@@ -3,7 +3,9 @@
 #include <unistd.h>
 #include <time.h>
 
+#define CHRONOS_INTRO_SCREEN_SECONDS 1 
 #define CHRONOS_MAX_LEVEL 10
+#define CHRONOS_BEAST_MODE 1
 
 typedef struct {
     int score;
@@ -37,7 +39,7 @@ int chronos_run(chronos *instance)
 {
     int level = 1;
     
-    for (int seconds = 20; seconds >= 0; seconds--)
+    for (int seconds = CHRONOS_INTRO_SCREEN_SECONDS; seconds >= 0; seconds--)
     {
         chronos_clear();    
         printf("\n== Welcome to Chronosyncher ==\n\n");
@@ -61,7 +63,7 @@ void chronos_create_level(chronos *instance, int level)
     int points = level * 10; 
     chronos_reset_time(instance);
 
-    instance->time_a = chronos_get_random_number(level * 10, level * 20);
+    instance->time_a = CHRONOS_BEAST_MODE == 1 ? chronos_get_random_number(level * 1, level * 11) : chronos_get_random_number(level * 10, level * 20);
     instance->time_b = chronos_get_random_number(level * 1, level * 10);
 
     chronos_clear();
@@ -73,7 +75,7 @@ void chronos_create_level(chronos *instance, int level)
     chronos_clear();
     chronos_display_score(instance);
 
-    printf("How much you should increase the satellite's time to synchronize the chronometers?: ");
+    printf(" => Satellite time increase: ");
     scanf("%d", &(instance->user_difference_b));
 
     instance->time_b = instance->time_b + instance->user_difference_b;
