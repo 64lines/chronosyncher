@@ -9,5 +9,5 @@ make
 
 ## Run
 ```bash
-./chronosyncher
+make run
 ```
