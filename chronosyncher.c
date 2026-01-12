@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define CHRONOS_INTRO_SCREEN_SECONDS 1 
+#define CHRONOS_INTRO_SCREEN_SECONDS 20
 #define CHRONOS_MAX_LEVEL 10
 #define CHRONOS_BEAST_MODE 1
 
